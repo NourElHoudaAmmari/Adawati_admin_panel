@@ -1,4 +1,5 @@
 import 'package:adawati_admin_panel/Screens/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:adawati_admin_panel/constants.dart';
 import 'package:dim_loading_dialog/dim_loading_dialog.dart';
@@ -29,7 +30,47 @@ context,
     blur: 2,
     backgroundColor: const Color(0x33000000),
     animationDuration: const Duration(milliseconds: 500));
-	
+
+
+	Future<void>_login()async{
+    
+   dimDialog.show();
+   _services.getAdminCredentials().then((value){
+    value.docs.forEach((doc) async { 
+      if(doc.get('email')== email){
+        if(doc.get('password')==password){
+          UserCredential userCredential = await FirebaseAuth.instance.signInAnonymously();
+        dimDialog.dismiss();
+        if(userCredential.user!.uid!=null){
+Navigator.pushReplacement(
+  context,
+   MaterialPageRoute(builder: (BuildContext context)=> HomeScreen()));
+   return;
+        }else{
+          _showMyDialog(
+            title: 'Login',
+            message: 'Login échoué'
+
+          );
+        }
+      }else{
+        dimDialog.dismiss();
+        _showMyDialog(
+          title: 'Mot de passe incorrect',
+          message: 'Mot de passe saisi est incorrect'
+        );
+      }
+    }else{
+      dimDialog.dismiss();
+      _showMyDialog(
+        title: 'email ivalide',
+        message: 'email saisi est incorrect'
+      );
+    }
+      
+    });
+   });
+  }
     return Scaffold(
       appBar: AppBar(
 elevation: 0.0,
@@ -142,35 +183,7 @@ centerTitle: true,
                             child:TextButton(
                             onPressed: ()async{
                               if(_formkey.currentState!.validate()){
-                                dimDialog.show();
-                                _services.getAdminCredentials().then((value){
-                               value.docs.forEach((doc) { 
-                                if(doc.get('email')==email){
-                              if(doc.get('password')==password){
-                                dimDialog.dismiss();
-                                Navigator.pushReplacement(
-                                    context, 
-                                    MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
-                              }else{
-                                dimDialog.dismiss();
-                                _showMyDialog(
-                          title: 'Mot de passe invalid',
-                          message: 'Mot de passe saisi invalide.',
-                         );
-                              }
-                                  Navigator.pushReplacement(
-                                    context, 
-                                    MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
-                                }else{
-                                  dimDialog.dismiss();
-                         _showMyDialog(
-                          title: 'Adresse email invalid',
-                          message: 'Adresse email saisie invalide.',
-                         );
-                                }
-                               });
-                                });
-                                print('validé');
+                             _login();
                               }
                             },
                              style: ButtonStyle(
