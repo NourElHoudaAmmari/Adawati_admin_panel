@@ -1,0 +1,232 @@
+import 'package:adawati_admin_panel/Screens/home_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:adawati_admin_panel/constants.dart';
+import 'package:dim_loading_dialog/dim_loading_dialog.dart';
+import 'package:adawati_admin_panel/services/firebase_services.dart';
+import 'package:firebase_core/firebase_core.dart';
+class MyHomePage extends StatefulWidget {
+  MyHomePage({super.key});
+
+ 
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  
+final _formkey = GlobalKey<FormState>();
+FirebaseServices _services = FirebaseServices();
+String email="";
+String password="";
+
+
+  @override
+  Widget build(BuildContext context) {
+   DimLoadingDialog dimDialog = DimLoadingDialog(
+context,
+    blur: 2,
+    backgroundColor: const Color(0x33000000),
+    animationDuration: const Duration(milliseconds: 500));
+	
+    return Scaffold(
+      appBar: AppBar(
+elevation: 0.0,
+centerTitle: true,
+       
+      ),
+      body:FutureBuilder(
+        future: _initialization,
+        builder: (context,snapshot){
+          if(snapshot.hasError){
+            return Center(child: Text('Connexion réfusé'),);
+          }
+          if(snapshot.connectionState == ConnectionState.done){
+            return Container (
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+          Color(0xFFFF7043),
+            Colors.white
+            ],
+            stops: [1.0,1.0],
+            begin: Alignment.topCenter,
+            end: Alignment(0.0, 0.0)
+            ),
+        ),
+        child: Center(
+          child: Container(
+            width: 350,
+            height: 450,
+            child: Card(
+              elevation: 6,
+              shape: Border.all(color: kPrimaryColor,width: 2),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Form(
+                  key: _formkey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        child: Column(
+                          children: [
+                            Image.asset('assets/images/logo.png'),
+                            Text('Adawati ADMIN',style: TextStyle(fontWeight: FontWeight.w900,fontSize: 20,color: kontColor),),
+                            SizedBox(height: 20,),
+                        TextFormField(
+                             cursorColor: kPrimaryColor,
+                          validator: (value) {
+                            if(value!.isEmpty){
+                              return 'Veuillez saisir une adresse mail';
+                            }
+                            setState(() {
+                              email = value;
+                            });
+                            return null;
+                          },
+                          decoration: const InputDecoration(
+                            
+                            hintText: 'Adresse email',
+                          labelText: 'Adresse email',
+                            prefixIcon: Icon(Icons.email_outlined,color: Colors.grey,),
+                         contentPadding: EdgeInsets.only(left: 20,right: 20),
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: kPrimaryColor,
+                                width: 2
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20,),
+                        TextFormField(
+                             cursorColor: kPrimaryColor,
+                               validator: (value) {
+                            if(value!.isEmpty){
+                              return 'Veuillez saisir un mot de passe';
+                            }
+                            if(value.length<6){
+                              return 'Au moins 6 caractéres';
+                            }
+                            setState(() {
+                              password = value;
+                            });
+                            return null;
+                          },
+                          obscureText: true,
+                          decoration: const InputDecoration(
+                            hintText: 'Mot de passe',
+                            labelText: 'Mot de passe',
+                            prefixIcon: Icon(Icons.lock_outline,color: Colors.grey,),
+                            contentPadding: EdgeInsets.only(left: 20,right: 20),
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: kPrimaryColor,
+                                width: 2
+                              ),
+                            ),
+                          ),
+                        ),
+                       
+                          ],
+                        ),
+                      ),
+                     
+                      Row(
+                        children: [
+                          Expanded(
+                            child:TextButton(
+                            onPressed: ()async{
+                              if(_formkey.currentState!.validate()){
+                                dimDialog.show();
+                                _services.getAdminCredentials().then((value){
+                               value.docs.forEach((doc) { 
+                                if(doc.get('email')==email){
+                              if(doc.get('password')==password){
+                                dimDialog.dismiss();
+                                Navigator.pushReplacement(
+                                    context, 
+                                    MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
+                              }else{
+                                dimDialog.dismiss();
+                                _showMyDialog(
+                          title: 'Mot de passe invalid',
+                          message: 'Mot de passe saisi invalide.',
+                         );
+                              }
+                                  Navigator.pushReplacement(
+                                    context, 
+                                    MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
+                                }else{
+                                  dimDialog.dismiss();
+                         _showMyDialog(
+                          title: 'Adresse email invalid',
+                          message: 'Adresse email saisie invalide.',
+                         );
+                                }
+                               });
+                                });
+                                print('validé');
+                              }
+                            },
+                             style: ButtonStyle(
+                                 minimumSize: MaterialStateProperty.all<Size>(Size(120, 50)),
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                  backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
+                ),
+                             child: Text('Se Connecter',style: TextStyle(fontSize: 20),),
+                             ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+        ),
+      
+      );
+  }
+  Future<void> _showMyDialog({title,message}) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title:  Text(title),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children:  <Widget>[
+              Text(message),
+              Text('Veuillez réessayer'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+
+}
