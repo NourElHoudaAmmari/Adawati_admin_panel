@@ -1,5 +1,10 @@
 
+import 'package:adawati_admin_panel/Screens/categorie_screen.dart';
+import 'package:adawati_admin_panel/Screens/etat_screen.dart';
+import 'package:adawati_admin_panel/Screens/home_screen.dart';
 import 'package:adawati_admin_panel/Screens/login_screen.dart';
+import 'package:adawati_admin_panel/Screens/matiere_screen.dart';
+import 'package:adawati_admin_panel/Screens/user_screen.dart';
 import 'package:adawati_admin_panel/services/firebase_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +48,15 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home:  MyHomePage(),
+      home:  LoginScreen(),
+      routes: {
+        HomeScreen.id:(context)=>  HomeScreen(),
+        CategorieScreen.id:(context)=>CategorieScreen(),
+       EtatScreen.id:(context)=> EtatScreen(),
+         MatiereScreen.id:(context)=> MatiereScreen(),
+          UserScreen.id:(context)=> UserScreen(),
+
+      },
     );
   }
 }

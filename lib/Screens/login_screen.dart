@@ -5,24 +5,25 @@ import 'package:adawati_admin_panel/constants.dart';
 import 'package:dim_loading_dialog/dim_loading_dialog.dart';
 import 'package:adawati_admin_panel/services/firebase_services.dart';
 import 'package:firebase_core/firebase_core.dart';
-class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key});
+class LoginScreen extends StatefulWidget {
+  static const String id = 'login-screen';
+  LoginScreen({super.key});
 
  
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _LoginScreenState extends State<LoginScreen> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   
 final _formkey = GlobalKey<FormState>();
 FirebaseServices _services = FirebaseServices();
+
+
 String email="";
 String password="";
-
-
   @override
   Widget build(BuildContext context) {
    DimLoadingDialog dimDialog = DimLoadingDialog(
@@ -31,8 +32,7 @@ context,
     backgroundColor: const Color(0x33000000),
     animationDuration: const Duration(milliseconds: 500));
 
-
-	Future<void>_login()async{
+Future<void>_login()async{
     
    dimDialog.show();
    _services.getAdminCredentials().then((value){
@@ -71,12 +71,10 @@ Navigator.pushReplacement(
     });
    });
   }
+
+	
     return Scaffold(
-      appBar: AppBar(
-elevation: 0.0,
-centerTitle: true,
-       
-      ),
+  
       body:FutureBuilder(
         future: _initialization,
         builder: (context,snapshot){
@@ -117,6 +115,7 @@ centerTitle: true,
                             Text('Adawati ADMIN',style: TextStyle(fontWeight: FontWeight.w900,fontSize: 20,color: kontColor),),
                             SizedBox(height: 20,),
                         TextFormField(
+                      
                              cursorColor: kPrimaryColor,
                           validator: (value) {
                             if(value!.isEmpty){
@@ -125,6 +124,7 @@ centerTitle: true,
                             setState(() {
                               email = value;
                             });
+                          
                             return null;
                           },
                           decoration: const InputDecoration(
@@ -144,6 +144,7 @@ centerTitle: true,
                         ),
                         SizedBox(height: 20,),
                         TextFormField(
+                       
                              cursorColor: kPrimaryColor,
                                validator: (value) {
                             if(value!.isEmpty){
@@ -155,6 +156,7 @@ centerTitle: true,
                             setState(() {
                               password = value;
                             });
+                         
                             return null;
                           },
                           obscureText: true,
