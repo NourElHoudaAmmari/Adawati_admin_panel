@@ -16,15 +16,16 @@ class _CategorieDataTableState extends State<CategorieDataTable> {
    final CategorieController categorieController = Get.put(CategorieController());
 
   @override
-  void initState() {
-    super.initState();
+ void get initState
+  {
+    super.initState;
     categorieController.fetchCategorie();
   }
 
   @override
   Widget build(BuildContext context) {
  var columns = const [
-  DataColumn(label: Text('id')),
+ // DataColumn(label: Text('id')),
   DataColumn(label: Text('Name')),
 DataColumn(
   label: Text(
@@ -67,7 +68,7 @@ class MyData extends DataTableSource {
   MyData() {
     for (var i = 0; i < categorieController.categories.length; i++) {
       data.add({
-        'id': categorieController.categories[i].id.toString(),
+       // 'id': categorieController.categories[i].id.toString(),
         'name': categorieController.categories[i].name,
         'actions': {
           'edit': () {
@@ -84,7 +85,7 @@ class MyData extends DataTableSource {
   @override
 DataRow getRow(int index) {
   return DataRow(cells: [
-    DataCell(Text(data[index]['id'].toString())),
+    //DataCell(Text(data[index]['id'].toString())),
     DataCell(Text(data[index]['name'].toString())),
     DataCell(Row(
       children: [

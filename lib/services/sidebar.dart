@@ -3,14 +3,16 @@
 import 'dart:js';
 
 import 'package:adawati_admin_panel/Screens/categorie_screen.dart';
+import 'package:adawati_admin_panel/Screens/etat/etat.dart';
 import 'package:adawati_admin_panel/Screens/etat_screen.dart';
 import 'package:adawati_admin_panel/Screens/home_screen.dart';
-import 'package:adawati_admin_panel/Screens/matiere_screen.dart';
 import 'package:adawati_admin_panel/Screens/niveau_screen.dart';
 import 'package:adawati_admin_panel/Screens/user_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+
+import '../Screens/matiere/matiere.dart';
 
 class SideBarWidget{
   sideBarMenus(context, selectedRoute){
@@ -36,12 +38,12 @@ class SideBarWidget{
           ),
             AdminMenuItem(
             title: 'Matiere',
-            route: MatiereScreen.id,
+            route: Matiere.id,
             icon: Icons.book,
           ),
             AdminMenuItem(
             title: 'Etat',
-            route: EtatScreen.id,
+            route: Etat.id,
             icon: Icons.check_box,
           ),
             AdminMenuItem(

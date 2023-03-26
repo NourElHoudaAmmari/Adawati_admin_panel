@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Categorie {
-  int? id;
+  String? id;
   String? name;
  
 

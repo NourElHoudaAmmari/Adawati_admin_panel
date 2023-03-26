@@ -5,7 +5,6 @@ import 'dart:async';
 import 'package:adawati_admin_panel/Screens/categorie_screen.dart';
 import 'package:adawati_admin_panel/Screens/etat_screen.dart';
 import 'package:adawati_admin_panel/Screens/home_screen.dart';
-import 'package:adawati_admin_panel/Screens/matiere_screen.dart';
 import 'package:adawati_admin_panel/Screens/niveau_screen.dart';
 import 'package:adawati_admin_panel/Screens/user_screen.dart';
 import 'package:adawati_admin_panel/constants.dart';
@@ -48,8 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  void initState(){
-    super.initState();
+  void get initState
+  {
+    super.initState;
 
    timeText= formatCurrentLiveTime(DateTime.now());
 

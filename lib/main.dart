@@ -1,17 +1,17 @@
 
 import 'package:adawati_admin_panel/Screens/categorie_screen.dart';
+import 'package:adawati_admin_panel/Screens/etat/etat.dart';
 import 'package:adawati_admin_panel/Screens/etat_screen.dart';
 import 'package:adawati_admin_panel/Screens/home_screen.dart';
 import 'package:adawati_admin_panel/Screens/login_screen.dart';
-import 'package:adawati_admin_panel/Screens/matiere_screen.dart';
 import 'package:adawati_admin_panel/Screens/niveau_screen.dart';
 import 'package:adawati_admin_panel/Screens/user_screen.dart';
-import 'package:adawati_admin_panel/services/firebase_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'constants.dart';
-import 'package:dim_loading_dialog/dim_loading_dialog.dart';
+import 'Screens/matiere/matiere.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'Screens/niveau/niveau.dart';
 
 void main() async {
 
@@ -53,10 +53,10 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeScreen.id:(context)=>  HomeScreen(),
         CategorieScreen.id:(context)=>CategorieScreen(),
-       EtatScreen.id:(context)=> EtatScreen(),
-         MatiereScreen.id:(context)=> MatiereScreen(),
+       Etat.id:(context)=> Etat(),
+         Matiere.id:(context)=> Matiere(),
           UserScreen.id:(context)=> UserScreen(),
-          NiveauScreen.id:(context)=>NiveauScreen(),
+          Niveau.id:(context)=>Niveau(),
 
       },
     );
