@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:adawati_admin_panel/constants.dart';
 import 'package:adawati_admin_panel/services/sidebar.dart';
+import 'package:adawati_admin_panel/widgets/user_datatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 
@@ -21,13 +24,23 @@ static const String id = 'user-screen';
         child: Container(
           alignment: Alignment.topLeft,
           padding: const EdgeInsets.all(10),
-          child: const Text(
-            'Utilisateurs',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 36,
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Utilisateurs',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 36,
+                  color: kontColor,
+                ),
+              ),
+              Divider(thickness: 2,),
+              SizedBox(height: 18,),
+                            ClientsTable(),
+            ],
           ),
+
         ),
       ),
     );

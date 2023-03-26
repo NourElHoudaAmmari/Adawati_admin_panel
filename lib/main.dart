@@ -4,6 +4,7 @@ import 'package:adawati_admin_panel/Screens/etat_screen.dart';
 import 'package:adawati_admin_panel/Screens/home_screen.dart';
 import 'package:adawati_admin_panel/Screens/login_screen.dart';
 import 'package:adawati_admin_panel/Screens/matiere_screen.dart';
+import 'package:adawati_admin_panel/Screens/niveau_screen.dart';
 import 'package:adawati_admin_panel/Screens/user_screen.dart';
 import 'package:adawati_admin_panel/services/firebase_services.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
        EtatScreen.id:(context)=> EtatScreen(),
          MatiereScreen.id:(context)=> MatiereScreen(),
           UserScreen.id:(context)=> UserScreen(),
+          NiveauScreen.id:(context)=>NiveauScreen(),
 
       },
     );

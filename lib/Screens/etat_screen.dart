@@ -26,6 +26,7 @@ static const String id = 'etat-screen';
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 36,
+              color: kontColor,
             ),
           ),
         ),

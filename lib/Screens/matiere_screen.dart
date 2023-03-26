@@ -26,6 +26,7 @@ SideBarWidget _sideBar = SideBarWidget();
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 36,
+              color: kontColor,
             ),
           ),
         ),

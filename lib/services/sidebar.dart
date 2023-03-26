@@ -15,6 +15,9 @@ import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 class SideBarWidget{
   sideBarMenus(context, selectedRoute){
     return SideBar(
+      activeBackgroundColor: Colors.black54,
+      activeIconColor: Colors.white,
+      activeTextStyle: TextStyle(color:Colors.white),
         items: const [
           AdminMenuItem(
             title: 'Dashboard',
@@ -47,7 +50,7 @@ class SideBarWidget{
             icon: Icons.person,
           ),
              AdminMenuItem(
-            title: 'Déconnexion',
+            title: 'Deconnexion',
             route: '/',
             icon: Icons.exit_to_app,
           ),
@@ -62,12 +65,12 @@ class SideBarWidget{
         header: Container(
           height: 50,
           width: double.infinity,
-          color: const Color(0xff444444),
+          color: Color.fromARGB(255, 155, 154, 154),
           child: const Center(
             child: Text(
               'MENU',
               style: TextStyle(letterSpacing: 2,
-                color: Colors.white,
+                color: Colors.white,fontWeight: FontWeight.bold
               ),
             ),
           ),
@@ -75,7 +78,7 @@ class SideBarWidget{
         footer: Container(
           height: 50,
           width: double.infinity,
-          color: const Color(0xff444444),
+          color: Color.fromARGB(255, 250, 249, 249),
           child:  Center(
               child: Image.asset('assets/images/logo.png'),
            
