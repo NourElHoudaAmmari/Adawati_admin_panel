@@ -131,7 +131,7 @@ class _MatiereState extends State<Matiere> {
                         // ignore: prefer_const_literals_to_create_immutables
                         columns: [
                            DataColumn(
-                            label: Text('Libellé'),
+                            label: Text('Libelle'),
                             numeric: false,
                           ),
                           DataColumn(
