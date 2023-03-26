@@ -94,7 +94,8 @@ class _CategorieScreenState extends State<CategorieScreen> {
                         ElevatedButton(
                           onPressed: () {
                             // Action à effectuer lors du clic sur le bouton "Submit"
-                           int id = int.tryParse(_idController.text) ?? 0;
+                            int id = int.parse(_idController.text);
+                          // int id = int.tryParse(_idController.text) ?? 0;
                             String name = _nameController.text;
                             // Ajouter la catégorie à la liste
                            CategorieController categorieController = Get.find();
