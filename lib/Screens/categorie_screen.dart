@@ -17,7 +17,7 @@ static const String id = 'categorie-screen';
 }
 
 class _CategorieScreenState extends State<CategorieScreen> {
-    final TextEditingController _idController = TextEditingController();
+  final TextEditingController _idController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {

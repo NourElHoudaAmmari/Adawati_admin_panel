@@ -6,7 +6,11 @@ import '../../controllers/matiere_controller.dart';
 import '../../models/matiere_model.dart';
 import '../../services/sidebar.dart';
 import 'form_edit.dart';
+<<<<<<< HEAD
 
+=======
+import 'package:flutter/material.dart';
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
 
 
 
@@ -28,6 +32,7 @@ class _AddEdirMatiereState extends State<AddEdirMatiere> {
   bool isedit = false;
   final TextEditingController libelle = TextEditingController();
   final TextEditingController id = TextEditingController();
+<<<<<<< HEAD
   final TextEditingController code = TextEditingController();
 
   @override
@@ -38,11 +43,25 @@ class _AddEdirMatiereState extends State<AddEdirMatiere> {
        code.text = widget.matiere?.code;
      libelle.text = widget.matiere?.libelle;
    
+=======
+
+
+  @override
+  void  get initState{
+    if(widget.index != null){
+      isedit = true;
+     id.text = widget.matiere?.id;
+     libelle.text = widget.matiere?.libelle;
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
     }
     else{
       isedit = false;
     }
+<<<<<<< HEAD
     super.initState();
+=======
+    super.initState;
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
   }
    @override
   Widget build(BuildContext context) {
@@ -57,6 +76,7 @@ class _AddEdirMatiereState extends State<AddEdirMatiere> {
        sideBar: _sideBar.sideBarMenus(context,AddEdirMatiere.id),
         body: SafeArea(
             child: SingleChildScrollView(
+<<<<<<< HEAD
                padding: EdgeInsets.all(44),
           child: Column(
             children: [
@@ -65,11 +85,21 @@ class _AddEdirMatiereState extends State<AddEdirMatiere> {
                 child: isedit == true
                  ? const Text("Modifier matiere",style: TextStyle(fontSize: 30),)
                    :const Text("Ajouter matiere",style: TextStyle(fontSize: 30),)
+=======
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+               Center(
+                child: isedit == true
+                 ? const Text("Edit matiere",style: TextStyle(fontSize: 30),)
+                   :const Text("Add matiere",style: TextStyle(fontSize: 30),)
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                 
               
               ),
               const SizedBox(height: 10),
               Padding(
+<<<<<<< HEAD
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                  child: Form(
                   key: _form_Key,
@@ -143,3 +173,48 @@ class _AddEdirMatiereState extends State<AddEdirMatiere> {
     );
   }
 }
+=======
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Form(
+                    key: _form_Key,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                      width: 250,
+                         child: FormEdit(labledText: "Libelle",
+                          mycontroller: libelle,
+ 
+                         )
+                         ),
+
+                       
+                      ],
+                    )),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                  onPressed: () {
+                    if (_form_Key.currentState!.validate()) {
+                      _form_Key.currentState!.save();
+                      if(isedit == true){
+                        MatiereController().update_matiere(MatiereModel(
+                          id : id.text,
+                          libelle: libelle.text));
+                      }
+                         else{
+                         MatiereController().add_matiere(MatiereModel(
+                          libelle: libelle.text)
+
+                         );
+                      }
+                      Navigator.pop(context);
+                    }
+                  
+                  },
+                  child: isedit == true ?  Text("Update") : Text("Save"))
+            ],
+          ),
+        )));
+  }
+}
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1

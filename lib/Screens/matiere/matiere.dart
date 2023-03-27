@@ -79,6 +79,7 @@ class _MatiereState extends State<Matiere> {
                   color: kontColor,
                 ),
               ),
+<<<<<<< HEAD
        Divider(thickness: 2,),
  Row(
   mainAxisAlignment: MainAxisAlignment.end,
@@ -105,12 +106,25 @@ class _MatiereState extends State<Matiere> {
   ],
 ),
             
+=======
+                ElevatedButton(
+                  onPressed:() {
+                     Navigator.push(context,
+                     MaterialPageRoute(builder: (context) => AddEdirMatiere()));
+        },
+      
+        child: Icon(Icons.add),),
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                  StreamBuilder<QuerySnapshot>(
                   stream: _matiere.snapshots(),
                   builder: (context, AsyncSnapshot snapshots) {
                     if (snapshots.connectionState == ConnectionState.waiting) {
                       return Center(
+<<<<<<< HEAD
                         child: CircularProgressIndicator(color: Colors.blue),
+=======
+                        child: CircularProgressIndicator(color: Colors.green),
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                       );
                     }
                     if (snapshots.hasData) {
@@ -118,6 +132,7 @@ class _MatiereState extends State<Matiere> {
                       for (int i = 0; i < snapshots.data.docs.length; i++) {
                         final DocumentSnapshot records = snapshots.data.docs[i];
                         rows.add(DataRow(cells: [
+<<<<<<< HEAD
                               
                           DataCell(Text(records["libelle"])),
                              DataCell(Row(children: [
@@ -126,6 +141,13 @@ class _MatiereState extends State<Matiere> {
                              final matiere = MatiereModel(
                                 id: records.id,
                                
+=======
+                          DataCell(Text(records["libelle"])),
+                          DataCell(IconButton(
+                            onPressed: () {
+                              final matiere = MatiereModel(
+                                id: records.id,
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                                 libelle: records["libelle"],
                               );
                               Navigator.push(
@@ -136,6 +158,7 @@ class _MatiereState extends State<Matiere> {
                                             index: i,
                                           ))));
                             },
+<<<<<<< HEAD
                             icon: Icon(Icons.edit),
                             color: Colors.blue,
                             ),
@@ -149,28 +172,57 @@ class _MatiereState extends State<Matiere> {
                           ],
                           ),
                           ),
+=======
+                            icon: Icon(Icons.edit_note),
+                            color: Colors.blue,
+                          )),
+                          DataCell(IconButton(
+                            onPressed: () {
+                               _showDeleteConfirmationDialog(records.id);
+                            },
+                            icon: Icon(Icons.delete_outline),
+                            color: Colors.red,
+                          )),
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                         ]
                         ));
                       }
                       return DataTable(
                         // ignore: prefer_const_literals_to_create_immutables
                         columns: [
+<<<<<<< HEAD
                          
+=======
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                            DataColumn(
                             label: Text('Libelle'),
                             numeric: false,
                           ),
                           DataColumn(
+<<<<<<< HEAD
                             label: Text('Actions'),
                             numeric: false,
                           ),
                          
+=======
+                            label: Text('Modifier'),
+                            numeric: false,
+                          ),
+                          DataColumn(
+                            label: Text('Supprimer'),
+                            numeric: false,
+                          ),
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                         ],
                         rows: rows,
                       );
                     } else {
                       return Center(
+<<<<<<< HEAD
                         child: CircularProgressIndicator(color: Colors.blue),
+=======
+                        child: CircularProgressIndicator(color: Colors.red),
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                       );
                     }
                   },
@@ -184,4 +236,8 @@ class _MatiereState extends State<Matiere> {
       )
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1

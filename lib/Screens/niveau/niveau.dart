@@ -21,11 +21,14 @@ class Niveau extends StatefulWidget {
 class _NiveauState extends State<Niveau> {
  final CollectionReference _niveau =
       FirebaseFirestore.instance.collection("niveau");
+<<<<<<< HEAD
       
        int _rowsPerPage = 10; // number of rows to display per page
   int _currentPage = 1; // current page number
   int _totalRows = 0; // total number of rows
   int _totalPages = 0;
+=======
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
       void _showDeleteConfirmationDialog(String id) {
     showDialog(
       context: context,
@@ -86,6 +89,7 @@ class _NiveauState extends State<Niveau> {
                   color: kontColor,
                 ),
               ),
+<<<<<<< HEAD
        Divider(thickness: 2,),
  Row(
   mainAxisAlignment: MainAxisAlignment.end,
@@ -110,6 +114,15 @@ class _NiveauState extends State<Niveau> {
 ),
   ],
 ),
+=======
+                ElevatedButton(
+                  onPressed:() {
+                     Navigator.push(context,
+                     MaterialPageRoute(builder: (context) => AddEditNiveau()));
+        },
+      
+        child: Icon(Icons.add),),
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                  StreamBuilder<QuerySnapshot>(
                   stream: _niveau.snapshots(),
                   builder: (context, AsyncSnapshot snapshots) {
@@ -124,9 +137,14 @@ class _NiveauState extends State<Niveau> {
                         final DocumentSnapshot records = snapshots.data.docs[i];
                         rows.add(DataRow(cells: [
                           DataCell(Text(records["libelle"])),
+<<<<<<< HEAD
                           DataCell(Row(children: [
                             IconButton(
                               onPressed: () {
+=======
+                          DataCell(IconButton(
+                            onPressed: () {
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                               final niveau = NiveauModel(
                                 id: records.id,
                                 libelle: records["libelle"],
@@ -139,6 +157,7 @@ class _NiveauState extends State<Niveau> {
                                             index: i,
                                           ))));
                             },
+<<<<<<< HEAD
                             icon: Icon(Icons.edit),
                             color: Colors.blue,
                             ),
@@ -153,6 +172,18 @@ class _NiveauState extends State<Niveau> {
                           ),
                           ),
 
+=======
+                            icon: Icon(Icons.edit_note),
+                            color: Colors.blue,
+                          )),
+                          DataCell(IconButton(
+                            onPressed: () {
+                               _showDeleteConfirmationDialog(records.id);
+                            },
+                            icon: Icon(Icons.delete_outline),
+                            color: Colors.red,
+                          )),
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                         ]
                         ));
                       }
@@ -164,16 +195,30 @@ class _NiveauState extends State<Niveau> {
                             numeric: false,
                           ),
                           DataColumn(
+<<<<<<< HEAD
                             label: Text('Actions'),
                             numeric: false,
                           ),
                        
+=======
+                            label: Text('Modifier'),
+                            numeric: false,
+                          ),
+                          DataColumn(
+                            label: Text('Supprimer'),
+                            numeric: false,
+                          ),
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                         ],
                         rows: rows,
                       );
                     } else {
                       return Center(
+<<<<<<< HEAD
                         child: CircularProgressIndicator(color: Colors.blue),
+=======
+                        child: CircularProgressIndicator(color: Colors.red),
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                       );
                     }
                   },
@@ -187,4 +232,8 @@ class _NiveauState extends State<Niveau> {
       )
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
