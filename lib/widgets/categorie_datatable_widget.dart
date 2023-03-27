@@ -16,7 +16,7 @@ class _CategorieDataTableState extends State<CategorieDataTable> {
    final CategorieController categorieController = Get.put(CategorieController());
 
   @override
- void get initState
+ void initState()
   {
     super.initState;
     categorieController.fetchCategorie();
@@ -25,13 +25,8 @@ class _CategorieDataTableState extends State<CategorieDataTable> {
   @override
   Widget build(BuildContext context) {
  var columns = const [
-<<<<<<< HEAD
 
   DataColumn(label: Text('Libelle')),
-=======
- // DataColumn(label: Text('id')),
-  DataColumn(label: Text('Name')),
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
 DataColumn(
   label: Text(
     'Actions',
@@ -73,11 +68,7 @@ class MyData extends DataTableSource {
   MyData() {
     for (var i = 0; i < categorieController.categories.length; i++) {
       data.add({
-<<<<<<< HEAD
      
-=======
-       // 'id': categorieController.categories[i].id.toString(),
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
         'name': categorieController.categories[i].name,
         'actions': {
           'edit': () {
@@ -94,11 +85,7 @@ class MyData extends DataTableSource {
   @override
 DataRow getRow(int index) {
   return DataRow(cells: [
-<<<<<<< HEAD
   
-=======
-    //DataCell(Text(data[index]['id'].toString())),
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
     DataCell(Text(data[index]['name'].toString())),
     DataCell(Row(
       children: [

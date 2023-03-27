@@ -29,11 +29,7 @@ class _AddEditEtatState extends State<AddEditEtat> {
 
 
   @override
-<<<<<<< HEAD
   void  initState(){
-=======
-  void  get initState{
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
     if(widget.index != null){
       isedit = true;
      id.text = widget.etat?.id;
@@ -57,7 +53,6 @@ class _AddEditEtatState extends State<AddEditEtat> {
        sideBar: _sideBar.sideBarMenus(context,AddEditEtat.id),
         body: SafeArea(
             child: SingleChildScrollView(
-<<<<<<< HEAD
                padding: EdgeInsets.all(44),
           child: Column(
             children: [
@@ -66,35 +61,18 @@ class _AddEditEtatState extends State<AddEditEtat> {
                 child: isedit == true
                  ? const Text("Modifier Etat",style: TextStyle(fontSize: 30),)
                    :const Text("Ajouter Etat",style: TextStyle(fontSize: 30),)
-=======
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-               Center(
-                child: isedit == true
-                 ? const Text("Edit etat",style: TextStyle(fontSize: 30),)
-                   :const Text("Add etat",style: TextStyle(fontSize: 30),)
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                 
               
               ),
               const SizedBox(height: 10),
               Padding(
-<<<<<<< HEAD
                 padding: const EdgeInsets.symmetric(horizontal: 30),
-=======
-                padding: const EdgeInsets.symmetric(horizontal: 15),
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                 child: Form(
                     key: _form_Key,
                     child: Column(
                       children: [
                         SizedBox(
-<<<<<<< HEAD
                       width: 350,
-=======
-                      width: 250,
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                          child: FormEdit(labledText: "Libelle",
                           mycontroller: libelle,
  
@@ -106,7 +84,6 @@ class _AddEditEtatState extends State<AddEditEtat> {
                     )),
               ),
               const SizedBox(height: 10),
-<<<<<<< HEAD
                     Center(
   child: Expanded(
     
@@ -118,11 +95,6 @@ class _AddEditEtatState extends State<AddEditEtat> {
     ElevatedButton(
       onPressed: () {
         if (_form_Key.currentState!.validate()) {
-=======
-              ElevatedButton(
-                  onPressed: () {
-                    if (_form_Key.currentState!.validate()) {
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                       _form_Key.currentState!.save();
                       if(isedit == true){
                         EtatController().update_etat(EtatModel(
@@ -136,7 +108,6 @@ class _AddEditEtatState extends State<AddEditEtat> {
                       }
                       Navigator.pop(context);
                     }
-<<<<<<< HEAD
       },
       child: isedit == true ?  Text("Modifier") : Text("Sauvgarder"),
        style: ButtonStyle(
@@ -157,17 +128,8 @@ class _AddEditEtatState extends State<AddEditEtat> {
 ),
   ),
             ),
-=======
-                  
-                  },
-                  child: isedit == true ?  Text("Update") : Text("Save"))
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
             ],
           ),
         )));
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1

@@ -47,8 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  void get initState
-  {
+  void  initState(){
     super.initState;
 
    timeText= formatCurrentLiveTime(DateTime.now());

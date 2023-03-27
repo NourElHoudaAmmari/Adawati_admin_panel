@@ -18,7 +18,7 @@ class _ClientsTableState extends State<ClientsTable> {
       Get.put(UserController());
 
   @override
-void get initState
+void initState()
   {
     super.initState;
     customersController.fetchUser();

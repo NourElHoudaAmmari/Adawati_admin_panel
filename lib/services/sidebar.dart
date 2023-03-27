@@ -6,11 +6,8 @@ import 'package:adawati_admin_panel/Screens/categorie_screen.dart';
 import 'package:adawati_admin_panel/Screens/etat/etat.dart';
 import 'package:adawati_admin_panel/Screens/etat_screen.dart';
 import 'package:adawati_admin_panel/Screens/home_screen.dart';
-<<<<<<< HEAD
 import 'package:adawati_admin_panel/Screens/matiere/matiere.dart';
 import 'package:adawati_admin_panel/Screens/matiere_screen.dart';
-=======
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
 import 'package:adawati_admin_panel/Screens/niveau_screen.dart';
 import 'package:adawati_admin_panel/Screens/user_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,20 +40,12 @@ class SideBarWidget{
           ),
             AdminMenuItem(
             title: 'Matiere',
-<<<<<<< HEAD
             route:  Matiere.id,
-=======
-            route: Matiere.id,
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
             icon: Icons.book,
           ),
             AdminMenuItem(
             title: 'Etat',
-<<<<<<< HEAD
             route:  Etat.id,
-=======
-            route: Etat.id,
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
             icon: Icons.check_box,
           ),
             AdminMenuItem(

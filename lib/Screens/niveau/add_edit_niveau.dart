@@ -25,11 +25,7 @@ class _AddEditNiveauState extends State<AddEditNiveau> {
 
 
   @override
-<<<<<<< HEAD
   void  initState(){
-=======
-  void  get initState{
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
     if(widget.index != null){
       isedit = true;
      id.text = widget.niveau?.id;
@@ -53,7 +49,6 @@ class _AddEditNiveauState extends State<AddEditNiveau> {
        sideBar: _sideBar.sideBarMenus(context,AddEditNiveau.id),
         body: SafeArea(
             child: SingleChildScrollView(
-<<<<<<< HEAD
               padding: EdgeInsets.all(44),
           child: Column(
             
@@ -63,40 +58,20 @@ class _AddEditNiveauState extends State<AddEditNiveau> {
                 child: isedit == true
                  ? const Text("Modifier niveau",style: TextStyle(fontSize: 30,color: kontColor,fontWeight: FontWeight.bold),)
                    :const Text("Ajouter niveau",style: TextStyle(fontSize: 30,color: kontColor,fontWeight: FontWeight.bold),)
-=======
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-               Center(
-                child: isedit == true
-                 ? const Text("Edit niveau",style: TextStyle(fontSize: 30),)
-                   :const Text("Add niveau",style: TextStyle(fontSize: 30),)
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                 
               
               ),
               const SizedBox(height: 10),
               Padding(
-<<<<<<< HEAD
                 padding: const EdgeInsets.symmetric(horizontal: 30),
-=======
-                padding: const EdgeInsets.symmetric(horizontal: 15),
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                 child: Form(
                     key: _form_Key,
                     child: Column(
                       children: [
                         SizedBox(
-<<<<<<< HEAD
                       width: 350,
                          child: FormEdit(labledText: "Libelle",
                           mycontroller: libelle,
-=======
-                      width: 250,
-                         child: FormEdit(labledText: "Libelle",
-                          mycontroller: libelle,
- 
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                          )
                          ),
 
@@ -105,7 +80,6 @@ class _AddEditNiveauState extends State<AddEditNiveau> {
                     )),
               ),
               const SizedBox(height: 10),
-<<<<<<< HEAD
             Center(
   child: Expanded(
     
@@ -156,30 +130,3 @@ class _AddEditNiveauState extends State<AddEditNiveau> {
         );
   }
 }
-=======
-              ElevatedButton(
-                  onPressed: () {
-                    if (_form_Key.currentState!.validate()) {
-                      _form_Key.currentState!.save();
-                      if(isedit == true){
-                        NiveauController().update_niveau(NiveauModel(
-                          id : id.text,
-                          libelle: libelle.text));
-                      }
-                         else{
-                          NiveauController().add_niveau(NiveauModel(
-                          libelle: libelle.text)
-
-                         );
-                      }
-                      Navigator.pop(context);
-                    }
-                  
-                  },
-                  child: isedit == true ?  Text("Update") : Text("Save"))
-            ],
-          ),
-        )));
-  }
-}
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1

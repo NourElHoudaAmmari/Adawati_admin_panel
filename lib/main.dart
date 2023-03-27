@@ -4,12 +4,9 @@ import 'package:adawati_admin_panel/Screens/etat/etat.dart';
 import 'package:adawati_admin_panel/Screens/etat_screen.dart';
 import 'package:adawati_admin_panel/Screens/home_screen.dart';
 import 'package:adawati_admin_panel/Screens/login_screen.dart';
-<<<<<<< HEAD
 import 'package:adawati_admin_panel/Screens/matiere/matiere.dart';
 import 'package:adawati_admin_panel/Screens/matiere_screen.dart';
 import 'package:adawati_admin_panel/Screens/niveau/niveau.dart';
-=======
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
 import 'package:adawati_admin_panel/Screens/niveau_screen.dart';
 import 'package:adawati_admin_panel/Screens/user_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -59,11 +56,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeScreen.id:(context)=>  HomeScreen(),
         CategorieScreen.id:(context)=>CategorieScreen(),
-<<<<<<< HEAD
       Etat.id:(context)=> Etat(),
-=======
-       Etat.id:(context)=> Etat(),
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
          Matiere.id:(context)=> Matiere(),
           UserScreen.id:(context)=> UserScreen(),
           Niveau.id:(context)=>Niveau(),

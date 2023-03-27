@@ -78,7 +78,6 @@ class _EtatState extends State<Etat> {
                   color: kontColor,
                 ),
               ),
-<<<<<<< HEAD
                      Divider(thickness: 2,),
  Row(
   mainAxisAlignment: MainAxisAlignment.end,
@@ -105,15 +104,6 @@ class _EtatState extends State<Etat> {
   ],
 ),
                 
-=======
-                ElevatedButton(
-                  onPressed:() {
-                     Navigator.push(context,
-                     MaterialPageRoute(builder: (context) => AddEditEtat()));
-        },
-      
-        child: Icon(Icons.add),),
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                  StreamBuilder<QuerySnapshot>(
                   stream: _etat.snapshots(),
                   builder: (context, AsyncSnapshot snapshots) {
@@ -128,16 +118,10 @@ class _EtatState extends State<Etat> {
                         final DocumentSnapshot records = snapshots.data.docs[i];
                         rows.add(DataRow(cells: [
                           DataCell(Text(records["libelle"])),
-<<<<<<< HEAD
                              DataCell(Row(children: [
                             IconButton(
                               onPressed: () {
                              final etat = EtatModel(
-=======
-                          DataCell(IconButton(
-                            onPressed: () {
-                              final etat = EtatModel(
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                                 id: records.id,
                                 libelle: records["libelle"],
                               );
@@ -149,7 +133,6 @@ class _EtatState extends State<Etat> {
                                             index: i,
                                           ))));
                             },
-<<<<<<< HEAD
                             icon: Icon(Icons.edit),
                             color: Colors.blue,
                             ),
@@ -163,18 +146,6 @@ class _EtatState extends State<Etat> {
                           ],
                           ),
                           ),
-=======
-                            icon: Icon(Icons.edit_note),
-                            color: Colors.blue,
-                          )),
-                          DataCell(IconButton(
-                            onPressed: () {
-                               _showDeleteConfirmationDialog(records.id);
-                            },
-                            icon: Icon(Icons.delete_outline),
-                            color: Colors.red,
-                          )),
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                         ]
                         ));
                       }
@@ -186,30 +157,16 @@ class _EtatState extends State<Etat> {
                             numeric: false,
                           ),
                           DataColumn(
-<<<<<<< HEAD
                             label: Text('Actions'),
                             numeric: false,
                           ),
                         
-=======
-                            label: Text('Modifier'),
-                            numeric: false,
-                          ),
-                          DataColumn(
-                            label: Text('Supprimer'),
-                            numeric: false,
-                          ),
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                         ],
                         rows: rows,
                       );
                     } else {
                       return Center(
-<<<<<<< HEAD
                         child: CircularProgressIndicator(color: Colors.blue),
-=======
-                        child: CircularProgressIndicator(color: Colors.red),
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
                       );
                     }
                   },
@@ -223,8 +180,4 @@ class _EtatState extends State<Etat> {
       )
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 69ff65da0a1c551c12a863a67a4454a0907d7aa1
