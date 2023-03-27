@@ -24,8 +24,8 @@ class _CategorieDataTableState extends State<CategorieDataTable> {
   @override
   Widget build(BuildContext context) {
  var columns = const [
-  DataColumn(label: Text('id')),
-  DataColumn(label: Text('Name')),
+
+  DataColumn(label: Text('Libelle')),
 DataColumn(
   label: Text(
     'Actions',
@@ -49,8 +49,8 @@ DataColumn(
               child: PaginatedDataTable(
                 columns: columns,
                 source: data,
-                columnSpacing: 450.0,
-                horizontalMargin: 60,
+                columnSpacing: 900.0,
+                horizontalMargin: 80,
                 rowsPerPage: 8,
               ),
             ),
@@ -67,7 +67,7 @@ class MyData extends DataTableSource {
   MyData() {
     for (var i = 0; i < categorieController.categories.length; i++) {
       data.add({
-        'id': categorieController.categories[i].id.toString(),
+     
         'name': categorieController.categories[i].name,
         'actions': {
           'edit': () {
@@ -84,7 +84,7 @@ class MyData extends DataTableSource {
   @override
 DataRow getRow(int index) {
   return DataRow(cells: [
-    DataCell(Text(data[index]['id'].toString())),
+  
     DataCell(Text(data[index]['name'].toString())),
     DataCell(Row(
       children: [

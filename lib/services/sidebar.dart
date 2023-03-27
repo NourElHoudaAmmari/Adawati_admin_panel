@@ -3,8 +3,10 @@
 import 'dart:js';
 
 import 'package:adawati_admin_panel/Screens/categorie_screen.dart';
+import 'package:adawati_admin_panel/Screens/etat/etat.dart';
 import 'package:adawati_admin_panel/Screens/etat_screen.dart';
 import 'package:adawati_admin_panel/Screens/home_screen.dart';
+import 'package:adawati_admin_panel/Screens/matiere/matiere.dart';
 import 'package:adawati_admin_panel/Screens/matiere_screen.dart';
 import 'package:adawati_admin_panel/Screens/niveau_screen.dart';
 import 'package:adawati_admin_panel/Screens/user_screen.dart';
@@ -36,12 +38,12 @@ class SideBarWidget{
           ),
             AdminMenuItem(
             title: 'Matiere',
-            route: MatiereScreen.id,
+            route:  Matiere.id,
             icon: Icons.book,
           ),
             AdminMenuItem(
             title: 'Etat',
-            route: EtatScreen.id,
+            route:  Etat.id,
             icon: Icons.check_box,
           ),
             AdminMenuItem(

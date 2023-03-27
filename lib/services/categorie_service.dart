@@ -14,8 +14,8 @@ class CategoriesServices {
         return categories;
       });
 
- Future<void> addCategory(int id, String name) async {
-  await firebaseFiretore.collection(collection).doc(id.toString()).set({
+      Future<void> addCategory(String id, String name) async {
+  await firebaseFiretore.collection(collection).doc(id).set({
     "id": id,
     "name": name,
   });

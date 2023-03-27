@@ -21,17 +21,13 @@ class CategorieController extends GetxController {
       isLoading(false);
     }
   }
- void addCategory(int id, String name) async {
-  try {
-    int? categoryId = int.tryParse(id.toString());
-    if (categoryId != null) {
-      await CategoriesServices().addCategory(categoryId, name);
+    void addCategory(String id, String name) async {
+    try {
+      await CategoriesServices().addCategory(id, name);
       fetchCategorie();
-    } else {
-      print('Invalid category id: $id');
+    } catch (e) {
+      print(e);
     }
-  } catch (e) {
-    print(e);
   }
-}
+  
 }
