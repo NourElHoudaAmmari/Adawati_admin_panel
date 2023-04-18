@@ -3,11 +3,12 @@
 import 'dart:js';
 
 import 'package:adawati_admin_panel/Screens/categorie_screen.dart';
+import 'package:adawati_admin_panel/Screens/demande/demande.dart';
+import 'package:adawati_admin_panel/Screens/dons/dons.dart';
 import 'package:adawati_admin_panel/Screens/etat/etat.dart';
 import 'package:adawati_admin_panel/Screens/etat_screen.dart';
 import 'package:adawati_admin_panel/Screens/home_screen.dart';
 import 'package:adawati_admin_panel/Screens/matiere/matiere.dart';
-import 'package:adawati_admin_panel/Screens/matiere_screen.dart';
 import 'package:adawati_admin_panel/Screens/niveau_screen.dart';
 import 'package:adawati_admin_panel/Screens/user_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,7 +29,10 @@ class SideBarWidget{
             route: HomeScreen.id,
             icon: Icons.dashboard,
           ),
-            AdminMenuItem(
+          AdminMenuItem(title: 'Parametrage',
+          icon: Icons.settings,
+          children: [
+           AdminMenuItem(
             title: 'Categorie',
             route: CategorieScreen.id,
             icon: Icons.category,
@@ -47,6 +51,17 @@ class SideBarWidget{
             title: 'Etat',
             route:  Etat.id,
             icon: Icons.check_box,
+          ),
+           ]),
+             AdminMenuItem(
+            title: 'Dons',
+            route: Don.id,
+            icon: Icons.post_add,
+          ),
+            AdminMenuItem(
+            title: 'Demande',
+            route: Demande.id,
+            icon: Icons.add_task,
           ),
             AdminMenuItem(
             title: 'Utilisateurs',

@@ -15,7 +15,7 @@ FormEdit({
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: TextStyle(color: Colors.grey[400]),
+      style: TextStyle(color: Colors.grey[600]),
       controller: mycontroller,
       validator: (value){
         if(value!.isEmpty){

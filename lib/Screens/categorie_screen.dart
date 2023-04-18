@@ -67,15 +67,7 @@ class _CategorieScreenState extends State<CategorieScreen> {
                         mainAxisSize: MainAxisSize.min,
                         
                         children: [
-                           TextFormField(
-           controller:_idController,
-            keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.next,
-            cursorColor: kontColor,
-            decoration: InputDecoration(
-              hintText: "id",
-            ),
-          ),
+           
                           TextFormField(
                             cursorColor: kontColor,
                             controller: _nameController,

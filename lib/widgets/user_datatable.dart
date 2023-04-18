@@ -32,6 +32,7 @@ void initState()
       DataColumn(label: Text('Name')),
       DataColumn(label: Text('Email')),
       DataColumn(label: Text('Phone')),
+       DataColumn(label: Text('Address')),
       DataColumn(label: Text('Actions')),
     ];
 
@@ -81,34 +82,47 @@ void initState()
                   rows: List<DataRow>.generate(
                     customersController.users.length,
                     (index) => DataRow(cells: [
-                  
-                      DataCell(CustomText(
-                        text: customersController.users[index].name
-                            .toString())),
-                      DataCell(CustomText(
-                        text: customersController.users[index].email
-                            .toString())),
-                    
-                      DataCell(CustomText(
-                        text: customersController.users[index].phone
-                            .toString())),
-                      DataCell(Container(
-                        decoration: BoxDecoration(
-                          color: light,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: active, width: .5),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        child: CustomText(
-                          text: 'Bloquer utilisateur',
-                          color: Colors.grey[800],
-                          weight: FontWeight.bold,
-                        ),
-                      )),
-                    ]),
+  DataCell(Padding(
+    padding: EdgeInsets.symmetric(horizontal: 18.0),
+    child: CustomText(
+      text: customersController.users[index].name.toString(),
+    ),
+  )),
+  DataCell(Padding(
+    padding: EdgeInsets.symmetric(horizontal: 18.0),
+    child: CustomText(
+      text: customersController.users[index].email.toString(),
+    ),
+  )),
+  DataCell(Padding(
+    padding: EdgeInsets.symmetric(horizontal: 18.0),
+    child: CustomText(
+      text: customersController.users[index].phone.toString(),
+    ),
+  )),
+  DataCell(Padding(
+    padding: EdgeInsets.symmetric(horizontal: 18.0),
+    child: CustomText(
+      text: customersController.users[index].address.toString(),
+    ),
+  )),
+  DataCell(Container(
+    decoration: BoxDecoration(
+      color: light,
+      borderRadius: BorderRadius.circular(20),
+      border: Border.all(color: active, width: .5),
+    ),
+    padding: const EdgeInsets.symmetric(
+      horizontal: 12,
+      vertical: 6,
+    ),
+    child: CustomText(
+      text: 'Bloquer utilisateur',
+      color: Colors.grey[800],
+      weight: FontWeight.bold,
+    ),
+  )),
+]),
                   ),
                 ),
               ),

@@ -71,7 +71,7 @@ class _EtatState extends State<Etat> {
             children: [
              
                const Text(
-                'Liste des etats',
+                'Liste des états',
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 36,

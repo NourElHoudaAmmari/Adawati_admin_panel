@@ -1,11 +1,12 @@
 
 import 'package:adawati_admin_panel/Screens/categorie_screen.dart';
+import 'package:adawati_admin_panel/Screens/demande/demande.dart';
+import 'package:adawati_admin_panel/Screens/dons/dons.dart';
 import 'package:adawati_admin_panel/Screens/etat/etat.dart';
 import 'package:adawati_admin_panel/Screens/etat_screen.dart';
 import 'package:adawati_admin_panel/Screens/home_screen.dart';
 import 'package:adawati_admin_panel/Screens/login_screen.dart';
 import 'package:adawati_admin_panel/Screens/matiere/matiere.dart';
-import 'package:adawati_admin_panel/Screens/matiere_screen.dart';
 import 'package:adawati_admin_panel/Screens/niveau/niveau.dart';
 import 'package:adawati_admin_panel/Screens/niveau_screen.dart';
 import 'package:adawati_admin_panel/Screens/user_screen.dart';
@@ -54,12 +55,15 @@ class MyApp extends StatelessWidget {
       ),
       home:  LoginScreen(),
       routes: {
-        HomeScreen.id:(context)=>  HomeScreen(),
-        CategorieScreen.id:(context)=>CategorieScreen(),
-      Etat.id:(context)=> Etat(),
-         Matiere.id:(context)=> Matiere(),
-          UserScreen.id:(context)=> UserScreen(),
-          Niveau.id:(context)=>Niveau(),
+        HomeScreen.id:(context)=> const  HomeScreen(),
+        CategorieScreen.id:(context)=> const CategorieScreen(),
+      Etat.id:(context)=>  const Etat(),
+         Matiere.id:(context)=> const Matiere(),
+          UserScreen.id:(context)=> const UserScreen(),
+          Niveau.id:(context)=>const Niveau(),
+         Don.id:(context)=> const Don(),
+          Demande.id:(context)=> const Demande(),
+
 
       },
     );
