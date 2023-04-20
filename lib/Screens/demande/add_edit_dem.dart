@@ -1,35 +1,39 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+
 import '../../constants.dart';
-import '../../controllers/niveau_controller.dart';
-import '../../models/niveau_model.dart';
+import '../../controllers/demande.dart';
+import '../../models/demande.dart';
 import '../../services/sidebar.dart';
 import '../matiere/form_edit.dart';
-class AddEditNiveau extends StatefulWidget {
- static const String id = 'niveauEdit-screen';
-  
-final NiveauModel? niveau;
-final index;
- AddEditNiveau({this.niveau, this.index});
+
+class AddEditDemande extends StatefulWidget {
+     static const String id = 'demEdit-screen';
+ final DemandeModel? demande;
+ final index;
+AddEditDemande({this.demande, this.index});
 
 
   @override
-  State<AddEditNiveau> createState() => _AddEditNiveauState();
+  State<AddEditDemande> createState() => _AddEditDemandeState();
 }
 
-class _AddEditNiveauState extends State<AddEditNiveau> {
+class _AddEditDemandeState extends State<AddEditDemande> {
   final _form_Key = GlobalKey<FormState>();
   bool isedit = false;
-  final TextEditingController libelle = TextEditingController();
+  final TextEditingController description = TextEditingController();
   final TextEditingController id = TextEditingController();
 
 
   @override
-  void get  initState{
+  void  get initState{
     if(widget.index != null){
       isedit = true;
-     id.text = widget.niveau?.id;
-     libelle.text = widget.niveau?.libelle;
+     id.text = widget.demande?.id;
+     description.text = widget.demande?.description;
     }
     else{
       isedit = false;
@@ -46,18 +50,17 @@ class _AddEditNiveauState extends State<AddEditNiveau> {
         iconTheme: IconThemeData(color: Colors.white),
         title: const Text('Adawati Dashboard',style: TextStyle(color:Colors.white),),
       ),
-       sideBar: _sideBar.sideBarMenus(context,AddEditNiveau.id),
+       sideBar: _sideBar.sideBarMenus(context,AddEditDemande.id),
         body: SafeArea(
             child: SingleChildScrollView(
-              padding: EdgeInsets.all(44),
+               padding: EdgeInsets.all(44),
           child: Column(
-            
             children: [
               const SizedBox(height: 40),
                Center(
                 child: isedit == true
-                 ? const Text("Modifier niveau",style: TextStyle(fontSize: 30,color: kontColor,fontWeight: FontWeight.bold),)
-                   :const Text("Ajouter niveau",style: TextStyle(fontSize: 30,color: kontColor,fontWeight: FontWeight.bold),)
+                 ? const Text("Modifier Demande",style: TextStyle(fontSize: 30),)
+                   :const Text("Ajouter Demande",style: TextStyle(fontSize: 30),)
                 
               
               ),
@@ -66,12 +69,14 @@ class _AddEditNiveauState extends State<AddEditNiveau> {
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Form(
                     key: _form_Key,
+
                     child: Column(
                       children: [
                         SizedBox(
                       width: 350,
-                         child: FormEdit(labledText: "Libelle",
-                          mycontroller: libelle,
+                         child: FormEdit(labledText: "Description",
+                          mycontroller: description,
+ 
                          )
                          ),
 
@@ -80,10 +85,8 @@ class _AddEditNiveauState extends State<AddEditNiveau> {
                     )),
               ),
               const SizedBox(height: 10),
-            Center(
-  child: Expanded(
-    
-    child: Row(
+                    Center(
+                   child: Row(
       
       mainAxisAlignment: MainAxisAlignment.center,
   children: [
@@ -91,18 +94,19 @@ class _AddEditNiveauState extends State<AddEditNiveau> {
     ElevatedButton(
       onPressed: () {
         if (_form_Key.currentState!.validate()) {
-          _form_Key.currentState!.save();
-          if(isedit == true){
-            NiveauController().update_niveau(NiveauModel(
-              id : id.text,
-              libelle: libelle.text));
-          } else {
-            NiveauController().add_niveau(NiveauModel(
-              libelle: libelle.text)
-            );
-          }
-          Navigator.pop(context);
-        }
+                      _form_Key.currentState!.save();
+                      if(isedit == true){
+                        DemandeController().update_demande(DemandeModel(
+                          id : id.text,
+                          description: description.text));
+                      }
+                         else{
+                         DemandeController().add_demande(DemandeModel(
+                           description: description.text)
+                         );
+                      }
+                      Navigator.pop(context);
+                    }
       },
       child: isedit == true ?  Text("Modifier") : Text("Sauvgarder"),
        style: ButtonStyle(
@@ -122,11 +126,20 @@ class _AddEditNiveauState extends State<AddEditNiveau> {
   ],
 ),
   ),
-            ),
-        ],
-        ),
-        ),
-        ),
-        );
+            
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+            ],
+          ),
+        )));
   }
 }

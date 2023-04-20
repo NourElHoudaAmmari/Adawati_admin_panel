@@ -1,15 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'dart:async';
-
-import 'package:adawati_admin_panel/Screens/categorie_screen.dart';
-import 'package:adawati_admin_panel/Screens/etat_screen.dart';
-import 'package:adawati_admin_panel/Screens/home_screen.dart';
-import 'package:adawati_admin_panel/Screens/niveau_screen.dart';
-import 'package:adawati_admin_panel/Screens/user_screen.dart';
 import 'package:adawati_admin_panel/constants.dart';
 import 'package:adawati_admin_panel/services/sidebar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:intl/intl.dart';
@@ -47,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  void  initState(){
+  void get initState{
     super.initState;
 
    timeText= formatCurrentLiveTime(DateTime.now());

@@ -22,7 +22,7 @@ class _NiveauState extends State<Niveau> {
  final CollectionReference _niveau =
       FirebaseFirestore.instance.collection("niveau");
       
-       int _rowsPerPage = 10; // number of rows to display per page
+  int _rowsPerPage = 10; // number of rows to display per page
   int _currentPage = 1; // current page number
   int _totalRows = 0; // total number of rows
   int _totalPages = 0;
@@ -93,14 +93,14 @@ class _NiveauState extends State<Niveau> {
    Padding(
   padding: EdgeInsets.only(right: 18.0), // ajuster la valeur de left selon votre besoin
   child: SizedBox(
-    width: 150,
+    width: 120,
     height: 28,
     child: ElevatedButton.icon(
               onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => AddEditNiveau()));
               },
       icon: Icon(Icons.add),
-      label: Text('Ajouter niveau'),
+      label: Text('Ajouter '),
       style: ElevatedButton.styleFrom(
         primary: kontColor,// couleur de fond
         onPrimary: Colors.white, // couleur du texte
@@ -123,6 +123,7 @@ class _NiveauState extends State<Niveau> {
                       for (int i = 0; i < snapshots.data.docs.length; i++) {
                         final DocumentSnapshot records = snapshots.data.docs[i];
                         rows.add(DataRow(cells: [
+                    
                           DataCell(Text(records["libelle"])),
                           DataCell(Row(children: [
                             IconButton(
@@ -157,6 +158,7 @@ class _NiveauState extends State<Niveau> {
                         ));
                       }
                       return DataTable(
+                         columnSpacing: 400.0,
                         // ignore: prefer_const_literals_to_create_immutables
                         columns: [
                            DataColumn(

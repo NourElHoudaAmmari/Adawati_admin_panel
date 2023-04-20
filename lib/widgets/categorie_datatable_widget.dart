@@ -16,7 +16,7 @@ class _CategorieDataTableState extends State<CategorieDataTable> {
    final CategorieController categorieController = Get.put(CategorieController());
 
   @override
- void initState()
+ void get initState
   {
     super.initState;
     categorieController.fetchCategorie();
@@ -45,12 +45,12 @@ DataColumn(
         
           : Container(
               decoration: BoxDecoration(
-               // border: Border.all(color: Colors.grey.shade700),
+            
               ),
               child: PaginatedDataTable(
                 columns: columns,
                 source: data,
-                columnSpacing: 900.0,
+                columnSpacing: 400.0,
                 horizontalMargin: 80,
                 rowsPerPage: 8,
               ),

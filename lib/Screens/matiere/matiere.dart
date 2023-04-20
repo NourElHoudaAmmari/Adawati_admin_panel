@@ -86,7 +86,7 @@ class _MatiereState extends State<Matiere> {
    Padding(
   padding: EdgeInsets.only(right: 16.0), // ajuster la valeur de left selon votre besoin
   child: SizedBox(
-    width: 200,
+    width: 120,
     height: 28,
     child: ElevatedButton.icon(
               onPressed: () {
@@ -94,7 +94,7 @@ class _MatiereState extends State<Matiere> {
                      MaterialPageRoute(builder: (context) => AddEdirMatiere()));
               },
       icon: Icon(Icons.add),
-      label: Text('Ajouter matiere'),
+      label: Text('Ajouter'),
       style: ElevatedButton.styleFrom(
         primary: kontColor,// couleur de fond
         onPrimary: Colors.white, // couleur du texte
@@ -153,6 +153,7 @@ class _MatiereState extends State<Matiere> {
                         ));
                       }
                       return DataTable(
+                         columnSpacing: 400.0,
                         // ignore: prefer_const_literals_to_create_immutables
                         columns: [
                          

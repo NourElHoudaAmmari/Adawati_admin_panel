@@ -11,7 +11,7 @@ import 'form_edit.dart';
 
 
 class AddEdirMatiere extends StatefulWidget {
-    static const String id = 'matiereEdit-screen';
+ static const String id = 'matiereEdit-screen';
   
 final MatiereModel? matiere;
 final index;
@@ -27,21 +27,20 @@ class _AddEdirMatiereState extends State<AddEdirMatiere> {
   bool isedit = false;
   final TextEditingController libelle = TextEditingController();
   final TextEditingController id = TextEditingController();
-  final TextEditingController code = TextEditingController();
+ 
 
   @override
-  void initState() {
+  void get  initState {
     if(widget.index != null){
       isedit = true;
      id.text = widget.matiere?.id;
-       code.text = widget.matiere?.code;
      libelle.text = widget.matiere?.libelle;
    
     }
     else{
       isedit = false;
     }
-    super.initState();
+    super.initState;
   }
    @override
   Widget build(BuildContext context) {
@@ -103,13 +102,13 @@ class _AddEdirMatiereState extends State<AddEdirMatiere> {
                     if(isedit == true){
                       MatiereController().update_matiere(MatiereModel(
                         id: id.text,
-                        code: code.text,
+                        
                         libelle: libelle.text
                       ));
                     }
                     else{
                       MatiereController().add_matiere(MatiereModel(
-                        code: code.text,
+                      
                         libelle: libelle.text
                       ));
                     }

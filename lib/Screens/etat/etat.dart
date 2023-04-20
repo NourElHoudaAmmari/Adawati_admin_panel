@@ -85,7 +85,7 @@ class _EtatState extends State<Etat> {
    Padding(
   padding: EdgeInsets.only(right: 18.0), // ajuster la valeur de left selon votre besoin
   child: SizedBox(
-    width: 150,
+    width: 120,
     height: 28,
     child: ElevatedButton.icon(
               onPressed: () {
@@ -93,7 +93,7 @@ class _EtatState extends State<Etat> {
                      MaterialPageRoute(builder: (context) => AddEditEtat()));
               },
       icon: Icon(Icons.add),
-      label: Text('Ajouter etat'),
+      label: Text('Ajouter '),
       style: ElevatedButton.styleFrom(
         primary: kontColor,// couleur de fond
         onPrimary: Colors.white, // couleur du texte
@@ -150,6 +150,7 @@ class _EtatState extends State<Etat> {
                         ));
                       }
                       return DataTable(
+                        columnSpacing: 400.0,
                         // ignore: prefer_const_literals_to_create_immutables
                         columns: [
                            DataColumn(
@@ -172,6 +173,9 @@ class _EtatState extends State<Etat> {
                   },
                 ),
               
+            
+            
+            
             ],
           ),
        

@@ -1,9 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
-
 import '../../constants.dart';
 import '../../controllers/etat_controller.dart';
 import '../../models/etat.dart';
@@ -29,7 +25,7 @@ class _AddEditEtatState extends State<AddEditEtat> {
 
 
   @override
-  void  initState(){
+  void  get initState{
     if(widget.index != null){
       isedit = true;
      id.text = widget.etat?.id;
