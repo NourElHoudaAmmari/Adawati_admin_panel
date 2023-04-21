@@ -11,7 +11,7 @@ import '../../services/sidebar.dart';
 import '../matiere/form_edit.dart';
 
 class AddEditDemande extends StatefulWidget {
-     static const String id = 'demEdit-screen';
+ static const String id = 'demEdit-screen';
  final DemandeModel? demande;
  final index;
 AddEditDemande({this.demande, this.index});
