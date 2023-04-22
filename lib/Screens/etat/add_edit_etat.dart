@@ -99,6 +99,7 @@ class _AddEditEtatState extends State<AddEditEtat> {
                       }
                          else{
                          EtatController().add_etat(EtatModel(
+                          id: id,
                           libelle: libelle.text)
                          );
                       }

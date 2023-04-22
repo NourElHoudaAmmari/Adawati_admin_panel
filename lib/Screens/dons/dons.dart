@@ -203,8 +203,9 @@ IconButton(
                       _deleteDonation(thisItem['id']);
                       Navigator.pop(context);
                     },
-                    child: Text('Delete'),
+                    child: Text('Supprimer'),
                   ),
+                  
                 ],
               );
             },

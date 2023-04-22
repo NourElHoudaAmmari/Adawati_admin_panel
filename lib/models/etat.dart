@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class EtatModel {
   final id,libelle;
 
@@ -5,7 +7,7 @@ class EtatModel {
   
   Map<String, dynamic>add_data(){
   return { 
-    "id":id,
+   "id": FirebaseFirestore.instance.collection('etats').doc().id,
   "libelle":libelle
   };
  
