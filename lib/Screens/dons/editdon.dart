@@ -28,6 +28,8 @@ class _EditDonState extends State<EditDon> {
   late TextEditingController _etatController;
   late TextEditingController _descriptionController;
   GlobalKey<FormState> _key = GlobalKey();
+  String  selectedCategorie="";
+  String selectedEtat = "";
 
   @override
   void get initState {
@@ -35,6 +37,8 @@ class _EditDonState extends State<EditDon> {
     super.initState;
     data = widget.data;
     _imageURL = data['image'];
+       selectedCategorie= widget.data['categorie'];
+       selectedEtat = widget.data['etat'];
     _imageController = TextEditingController(text: widget.data['image']);
     _titleController = TextEditingController(text: widget.data['title']);
     _categorieController = TextEditingController(text: widget.data['categorie']);
@@ -69,12 +73,13 @@ void _updateImage() async {
   }
 }
 Future<String> uploadImageToFirebaseStorage(File file) async {
- final reference = FirebaseStorage.instance.ref().child('don_images');
-  final  uploadTask =reference.putFile(file);
-     final snapshot = await uploadTask;
-  //String imageURL = await snapshot.ref.getDownloadURL();
-    return  snapshot.ref.getDownloadURL();
+  final reference = FirebaseStorage.instance.ref().child('don_images');
+  final uploadTask = reference.putFile(file);
+  final snapshot = await uploadTask;
+  String imageURL = await snapshot.ref.getDownloadURL();
+  return imageURL;
 }
+
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +109,7 @@ Future<String> uploadImageToFirebaseStorage(File file) async {
     ),
     child: _imageURL.isEmpty
         ? Center(
-            child: Text('Tap to add image'),
+            child: Text('Ajouter image'),
           )
         : Image.network(
             _imageURL,
@@ -113,7 +118,6 @@ Future<String> uploadImageToFirebaseStorage(File file) async {
   ),
 ),
 SizedBox(height: 10,),
-
                 ElevatedButton(
   onPressed: _updateImage,
   child: Text('Modifier l\'image'),
@@ -136,38 +140,88 @@ SizedBox(height: 10,),
                   },
                 ),
               ),
-              SizedBox(height: 10,),
               Container(
                 width: 700,
-                child: TextFormField(
-                  controller:   _categorieController,
-                  decoration:
-                      InputDecoration(hintText: 'Categorie'),
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return '***champ obligatoire';
+                child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance.collection('categories').snapshots(),
+                builder: (context, snapshot) {
+                  List<DropdownMenuItem<String>> categorieItems = [];
+                  if (!snapshot.hasData) {
+                    return const CircularProgressIndicator();
+                  } else {
+                    final categories = snapshot.data?.docs.reversed.toList();
+                    categorieItems.add(
+                      const DropdownMenuItem(
+                        value: "0",
+                        child: Text('Categorie sélectionnée'),
+                      ),
+                    );
+                    for (var category in categories!) {
+                      categorieItems.add(DropdownMenuItem(
+                        value: category["name"],
+                        child: Text(
+                          category['name'],
+                        ),
+                      ));
                     }
-              
-                    return null;
-                  },
-                ),
+                  }
+                  return DropdownButton(
+                    items: categorieItems,
+                    onChanged: (categorieValue) {
+                      setState(() {
+                        selectedCategorie = categorieValue as String;
+                      });
+                      print(categorieValue);
+                    },
+                    value: selectedCategorie,
+                    isExpanded: false,
+                  );
+                }
               ),
+              ),
+
+            
               SizedBox(height: 8),
-              Container(
-                width: 700,
-                child: TextFormField(
-                 controller: _etatController,
-                  decoration:
-                     InputDecoration(hintText: 'Etat '),
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return '***champ obligatoire';
-                    }
-              
-                    return null;
-                  },
-                           ),
-              ),
+           Container(
+           width: 700,
+             child: StreamBuilder<QuerySnapshot>(
+             stream: FirebaseFirestore.instance.collection('etats').snapshots(),
+             builder: (context,snapshot){
+               List<DropdownMenuItem>etatItems=[];
+               if(!snapshot.hasData){
+                 return const CircularProgressIndicator();
+               }else{
+                 final etats = snapshot.data?.docs.reversed.toList();
+                 etatItems.add(
+                   const DropdownMenuItem(
+                     value: "0",
+                     child: Text('Etat sélectionné'),
+                   ),
+                 );
+                 for(var etat in etats!){
+                   etatItems.add(DropdownMenuItem(
+                     value: etat["libelle"],
+                     child: Text(
+              etat['libelle'],
+                     ),
+                   ));
+                 }
+               }
+               return DropdownButton(
+                 items: etatItems,
+                 onChanged: (etatValue) {
+                   setState(() {
+                     selectedEtat = etatValue as String;
+                   });
+                   print(etatValue);
+                 },
+                 value: selectedEtat,
+                 isExpanded: false,
+               );
+             }
+           ),
+           ),
+
               SizedBox(height: 8),
               Container(
                 width: 700,
@@ -197,8 +251,8 @@ SizedBox(height: 10,),
                       //Create the Map of data
                       Map<String,String> dataToUpdate={
                         'title':title,
-                        'categorie':categorie,
-                        'etat':etat,
+                        'categorie':selectedCategorie,
+                        'etat':selectedEtat,
                         'description':description,
                         'image': image,
                       };
