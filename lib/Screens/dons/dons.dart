@@ -16,6 +16,7 @@ class Don extends StatefulWidget {
 }
 
 class _DonState extends State<Don> {
+    final _pageController = PageController();
   void _deleteDonation(String id) async {
   try {
     await _reference.doc(id).delete();
@@ -46,6 +47,7 @@ class _DonState extends State<Don> {
   void get  initState{
     super.initState;
     _stream = _reference.snapshots();
+    _stream = _reference.orderBy('createdAt', descending: true).snapshots();
   }
 
   @override
@@ -85,12 +87,6 @@ class _DonState extends State<Don> {
                     ],
                   ),
             
-                  ElevatedButton.icon(
-                    onPressed: (){},
-                    icon: Icon(Icons.add),
-                    label: Text('Ajouter un don'),
-                    style: ElevatedButton.styleFrom(primary: kontColor),
-                  ),
                 ],
               ),
             ),
@@ -125,7 +121,7 @@ class _DonState extends State<Don> {
                     physics: NeverScrollableScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3, //Number of columns
+                      crossAxisCount: 5, //Number of columns
                       childAspectRatio: 1, //Ratio of height to width of each grid item
                     ),
                     itemCount: items.length,

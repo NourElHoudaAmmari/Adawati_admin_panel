@@ -46,7 +46,7 @@ class _DonDetailsState extends State<DonDetails> {
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasError) {
                 return Center(
-                    child: Text('Some error occurred ${snapshot.error}'));
+                    child: Text('Une erreur s''est produite ${snapshot.error}'));
               }
 
               if (snapshot.hasData) {
@@ -65,9 +65,8 @@ class _DonDetailsState extends State<DonDetails> {
                       children: [
                         SizedBox(height: 10),
                         Container(
-                          
-                          height: 270.0,
-                          width: 400.0,
+                          height: 200.0,
+                          width: 350.0,
                           decoration:
                               BoxDecoration(border: Border.all(color: Colors.white)),
                           padding: EdgeInsets.all(5.0),
@@ -208,6 +207,38 @@ class _DonDetailsState extends State<DonDetails> {
                                         vertical: 8.0, horizontal: 16.0),
                                     child: Text(
                                       "${data['description']}",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.black,
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                             TableRow(
+                              children: [
+                                TableCell(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0, horizontal: 16.0),
+                                    child: Text(
+                                      "Donateur :",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.black,
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                                TableCell(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0, horizontal: 16.0),
+                                    child: Text(
+                                      "${data['userName']}",
                                       style: TextStyle(
                                         fontSize: 16,
                                         color: Colors.black,

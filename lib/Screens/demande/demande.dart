@@ -117,6 +117,7 @@ class _DemandeState extends State<Demande> {
                         final DocumentSnapshot records = snapshots.data.docs[i];
                         rows.add(DataRow(cells: [
                           DataCell(Text(records["description"])),
+                           DataCell(Text(records["userName"])),
                              DataCell(Row(children: [
                             IconButton(
                               onPressed: () {
@@ -149,11 +150,15 @@ class _DemandeState extends State<Demande> {
                         ));
                       }
                       return DataTable(
-                        columnSpacing: 400.0,
+                        columnSpacing: 100.0,
                         // ignore: prefer_const_literals_to_create_immutables
                         columns: [
                            DataColumn(
                             label: Text('Description'),
+                            numeric: false,
+                          ),
+                            DataColumn(
+                            label: Text('Utilisateur'),
                             numeric: false,
                           ),
                           DataColumn(
