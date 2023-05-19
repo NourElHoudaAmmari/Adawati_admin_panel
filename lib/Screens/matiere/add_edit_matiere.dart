@@ -30,7 +30,7 @@ class _AddEdirMatiereState extends State<AddEdirMatiere> {
  
 
   @override
-  void get  initState {
+  void  initState() {
     if(widget.index != null){
       isedit = true;
      id.text = widget.matiere?.id;

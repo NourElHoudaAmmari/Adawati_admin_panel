@@ -29,7 +29,7 @@ class _AddEditDemandeState extends State<AddEditDemande> {
 
 
   @override
-  void  get initState{
+  void  initState(){
     if(widget.index != null){
       isedit = true;
      id.text = widget.demande?.id;

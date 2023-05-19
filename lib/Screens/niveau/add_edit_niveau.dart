@@ -25,7 +25,7 @@ class _AddEditNiveauState extends State<AddEditNiveau> {
 
 
   @override
-  void get  initState{
+  void  initState(){
     if(widget.index != null){
       isedit = true;
      id.text = widget.niveau?.id;

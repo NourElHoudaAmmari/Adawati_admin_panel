@@ -25,7 +25,7 @@ class _AddEditEtatState extends State<AddEditEtat> {
 
 
   @override
-  void  get initState{
+  void   initState(){
     if(widget.index != null){
       isedit = true;
      id.text = widget.etat?.id;

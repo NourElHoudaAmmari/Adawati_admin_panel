@@ -33,7 +33,7 @@ class _EditDonState extends State<EditDon> {
   String selectedEtat = "";
 
   @override
-  void get initState {
+  void initState (){
     
     super.initState;
     data = widget.data;
@@ -188,7 +188,7 @@ SizedBox(height: 10,),
              child: StreamBuilder<QuerySnapshot>(
              stream: FirebaseFirestore.instance.collection('etats').snapshots(),
              builder: (context,snapshot){
-               List<DropdownMenuItem>etatItems=[];
+             List<DropdownMenuItem<String>> etatItems = [];
                if(!snapshot.hasData){
                  return const CircularProgressIndicator();
                }else{
@@ -208,17 +208,17 @@ SizedBox(height: 10,),
                    ));
                  }
                }
-               return DropdownButton(
-                 items: etatItems,
-                 onChanged: (etatValue) {
-                   setState(() {
-                     selectedEtat = etatValue as String;
-                   });
-                   print(etatValue);
-                 },
-                 value: selectedEtat,
-                 isExpanded: false,
-               );
+            return DropdownButton<String>(
+  items: etatItems,
+  onChanged: (String? etatValue) {
+    setState(() {
+      selectedEtat = etatValue!;
+    });
+    print(etatValue);
+  },
+  value: selectedEtat,
+  isExpanded: false,
+);
              }
            ),
            ),

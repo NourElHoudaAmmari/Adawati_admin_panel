@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../constants.dart';
+import '../models/user.dart';
 
 class ClientsTable extends StatefulWidget {
   const ClientsTable({super.key});
@@ -14,11 +15,13 @@ class ClientsTable extends StatefulWidget {
 }
 
 class _ClientsTableState extends State<ClientsTable> {
+  late User user;
+  // bool isBlocked = false;
   final UserController customersController =
       Get.put(UserController());
 
   @override
-void get initState
+void initState()
   {
     super.initState;
     customersController.fetchUser();
@@ -81,21 +84,26 @@ void get initState
                   columns: columns,
                   rows: List<DataRow>.generate(
                     customersController.users.length,
-                    (index) => DataRow(cells: [
+                    
+                    (index){
+               final user = customersController.users[index];
+      final isBlocked = user.isBlocked;
+                  
+                      return DataRow(cells: [
   DataCell(Padding(
-    padding: EdgeInsets.symmetric(horizontal: 18.0),
+    padding: EdgeInsets.symmetric(horizontal: 30.0),
     child: CustomText(
       text: customersController.users[index].name.toString(),
     ),
   )),
   DataCell(Padding(
-    padding: EdgeInsets.symmetric(horizontal: 18.0),
+    padding: EdgeInsets.symmetric(horizontal: 30.0),
     child: CustomText(
       text: customersController.users[index].email.toString(),
     ),
   )),
   DataCell(Padding(
-    padding: EdgeInsets.symmetric(horizontal: 18.0),
+    padding: EdgeInsets.symmetric(horizontal: 30.0),
     child: CustomText(
       text: customersController.users[index].phone.toString(),
     ),
@@ -106,23 +114,24 @@ void get initState
       text: customersController.users[index].address.toString(),
     ),
   )),
-  DataCell(Container(
-    decoration: BoxDecoration(
-      color: light,
-      borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: active, width: .5),
-    ),
-    padding: const EdgeInsets.symmetric(
-      horizontal: 12,
-      vertical: 6,
-    ),
-    child: CustomText(
-      text: 'Bloquer utilisateur',
-      color: Colors.grey[800],
-      weight: FontWeight.bold,
-    ),
-  )),
-]),
+     DataCell(Row(children: [
+                            IconButton(
+                              onPressed: () {
+                     if (isBlocked != null && isBlocked) {
+                    customersController.unblockUser(user.id!);
+                  } else {
+                    customersController.blockUser(user.id!);
+                  }
+                },
+                icon: Icon(
+                  isBlocked != null && isBlocked ? Icons.lock : Icons.lock_open,
+                  color: isBlocked != null && isBlocked ? Colors.red : Colors.green,
+                ),
+                            ),
+                          ],
+                          ),),
+]);
+                    }
                   ),
                 ),
               ),
@@ -133,4 +142,6 @@ void get initState
     )
     );
   }
+  
+ 
 }

@@ -16,7 +16,7 @@ class _CategorieDataTableState extends State<CategorieDataTable> {
    final CategorieController categorieController = Get.put(CategorieController());
 
   @override
- void get initState
+ void  initState()
   {
     super.initState;
     categorieController.fetchCategorie();

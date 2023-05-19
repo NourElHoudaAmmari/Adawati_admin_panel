@@ -44,7 +44,7 @@ class _DonState extends State<Don> {
   CollectionReference _reference =
       FirebaseFirestore.instance.collection('dons');
   @override
-  void get  initState{
+  void   initState(){
     super.initState;
     _stream = _reference.snapshots();
     _stream = _reference.orderBy('createdAt', descending: true).snapshots();
