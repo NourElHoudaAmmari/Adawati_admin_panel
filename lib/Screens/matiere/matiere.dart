@@ -104,6 +104,7 @@ class _MatiereState extends State<Matiere> {
 ),
   ],
 ),
+SizedBox(height: 8,),
             
                  StreamBuilder<QuerySnapshot>(
                   stream: _matiere.snapshots(),
@@ -153,7 +154,7 @@ class _MatiereState extends State<Matiere> {
                         ));
                       }
                       return DataTable(
-                         columnSpacing: 400.0,
+                         columnSpacing: 999.0,
                         // ignore: prefer_const_literals_to_create_immutables
                         columns: [
                          

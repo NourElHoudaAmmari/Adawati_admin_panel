@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+/*
 import 'package:adawati_admin_panel/controllers/categorie_controller.dart';
 import 'package:adawati_admin_panel/services/sidebar.dart';
 import 'package:adawati_admin_panel/widgets/categorie_datatable_widget.dart';
@@ -121,4 +121,4 @@ class _CategorieScreenState extends State<CategorieScreen> {
       ),
     );
   }
-  }
+  }*/

@@ -1,5 +1,5 @@
-import 'package:adawati_admin_panel/constants.dart';
-import 'package:adawati_admin_panel/models/categorie.dart';
+/*import 'package:adawati_admin_panel/constants.dart';
+import 'package:adawati_admin_panel/models/categorie_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CategoriesServices {
@@ -20,4 +20,4 @@ class CategoriesServices {
     "name": name,
   });
 }
-}
+}*/

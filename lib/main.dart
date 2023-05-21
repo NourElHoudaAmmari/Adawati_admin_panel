@@ -1,4 +1,5 @@
 
+import 'package:adawati_admin_panel/Screens/categorie/categorie.dart';
 import 'package:adawati_admin_panel/Screens/categorie_screen.dart';
 import 'package:adawati_admin_panel/Screens/demande/demande.dart';
 import 'package:adawati_admin_panel/Screens/dons/dons.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
       home:  LoginScreen(),
       routes: {
         HomeScreen.id:(context)=> const  HomeScreen(),
-        CategorieScreen.id:(context)=> const CategorieScreen(),
+        Categorie.id:(context)=> const Categorie(),
       Etat.id:(context)=>  const Etat(),
          Matiere.id:(context)=> const Matiere(),
           UserScreen.id:(context)=> const UserScreen(),

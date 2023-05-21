@@ -1,31 +1,30 @@
+import 'package:adawati_admin_panel/Screens/categorie/add_edit_categorie.dart';
+import 'package:adawati_admin_panel/constants.dart';
+import 'package:adawati_admin_panel/controllers/categorie_controller.dart';
+import 'package:adawati_admin_panel/models/categorie_model.dart';
+import 'package:adawati_admin_panel/services/sidebar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
-import 'package:intl/intl.dart';
-import '../../constants.dart';
-import '../../controllers/demande.dart';
-import '../../models/demande.dart';
-import '../../services/sidebar.dart';
-import 'add_edit_dem.dart';
 
-class Demande extends StatefulWidget {
-  const Demande({super.key});
-    static const String id = 'demande-screen';
+class Categorie extends StatefulWidget {
+   static const String id = 'categorie-screen';
+  const Categorie({super.key});
 
   @override
-  State<Demande> createState() => _DemandeState();
+  State<Categorie> createState() => _CategorieState();
 }
 
-class _DemandeState extends State<Demande> {
-   final CollectionReference _demande =
-      FirebaseFirestore.instance.collection("demande");
+class _CategorieState extends State<Categorie> {
+   final CollectionReference _categorie =
+      FirebaseFirestore.instance.collection("categories");
       void _showDeleteConfirmationDialog(String id) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Confirmation'),
-          content: Text('Voulez-vous vraiment supprimer cette demande?'),
+          content: Text('Voulez-vous vraiment supprimer cet etat?'),
           actions: <Widget>[
             TextButton(
               child: Text('ANNULER'),
@@ -41,7 +40,7 @@ class _DemandeState extends State<Demande> {
                 ),
               ),
               onPressed: () {
-                DemandeController().delete_demande(DemandeModel(id: id));
+                CategorieController().delete_categorie(CategorieModel(id: id));
                 Navigator.of(context).pop();
               },
             ),
@@ -61,7 +60,7 @@ class _DemandeState extends State<Demande> {
         iconTheme: IconThemeData(color: Colors.white),
         title: const Text('Adawati Dashboard',style: TextStyle(color:Colors.white),),
       ),
-       sideBar: _sideBar.sideBarMenus(context,Demande.id),
+       sideBar: _sideBar.sideBarMenus(context,Categorie.id),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -72,7 +71,7 @@ class _DemandeState extends State<Demande> {
             children: [
              
                const Text(
-                'Liste des demandes',
+                'Liste des catégories',
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 36,
@@ -90,7 +89,8 @@ class _DemandeState extends State<Demande> {
     height: 28,
     child: ElevatedButton.icon(
               onPressed: () {
-                  
+                  Navigator.push(context,
+                     MaterialPageRoute(builder: (context) => AddEditCategorie()));
               },
       icon: Icon(Icons.add),
       label: Text('Ajouter '),
@@ -103,9 +103,9 @@ class _DemandeState extends State<Demande> {
 ),
   ],
 ),
-                
+   SizedBox(height: 8,),             
                  StreamBuilder<QuerySnapshot>(
-                  stream: _demande.snapshots(),
+                  stream: _categorie.snapshots(),
                   builder: (context, AsyncSnapshot snapshots) {
                     if (snapshots.connectionState == ConnectionState.waiting) {
                       return Center(
@@ -117,21 +117,19 @@ class _DemandeState extends State<Demande> {
                       for (int i = 0; i < snapshots.data.docs.length; i++) {
                         final DocumentSnapshot records = snapshots.data.docs[i];
                         rows.add(DataRow(cells: [
-                          DataCell(Text(records["description"])),
-                           DataCell(Text(records["userName"])),
-                           DataCell(Text(DateFormat('dd-MM-yyyy HH:mm').format(records['createdAt'].toDate()))),
+                          DataCell(Text(records["libelle"])),
                              DataCell(Row(children: [
                             IconButton(
                               onPressed: () {
-                             final demande = DemandeModel(
+                             final categorie= CategorieModel(
                                 id: records.id,
-                                description: records["description"],
+                                libelle: records["libelle"],
                               );
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: ((context) => AddEditDemande(
-                                            demande: demande,
+                                      builder: ((context) => AddEditCategorie(
+                                            categorie: categorie,
                                             index: i,
                                           ))));
                             },
@@ -152,19 +150,11 @@ class _DemandeState extends State<Demande> {
                         ));
                       }
                       return DataTable(
-                        columnSpacing: 150.0,
+                        columnSpacing: 950.0,
                         // ignore: prefer_const_literals_to_create_immutables
                         columns: [
                            DataColumn(
-                            label: Text('Description'),
-                            numeric: false,
-                          ),
-                            DataColumn(
-                            label: Text('Utilisateur'),
-                            numeric: false,
-                          ),
-                             DataColumn(
-                            label: Text('Date de création'),
+                            label: Text('Libelle'),
                             numeric: false,
                           ),
                           DataColumn(

@@ -1,4 +1,5 @@
 import 'dart:js';
+import 'package:adawati_admin_panel/Screens/categorie/categorie.dart';
 import 'package:adawati_admin_panel/Screens/categorie_screen.dart';
 import 'package:adawati_admin_panel/Screens/demande/demande.dart';
 import 'package:adawati_admin_panel/Screens/dons/dons.dart';
@@ -29,7 +30,7 @@ class SideBarWidget{
           children: [
            AdminMenuItem(
             title: 'Categorie',
-            route: CategorieScreen.id,
+            route: Categorie.id,
             icon: Icons.category,
           ),
             AdminMenuItem(

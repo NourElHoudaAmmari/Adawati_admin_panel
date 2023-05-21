@@ -1,6 +1,7 @@
 import 'package:adaptive_scrollbar/adaptive_scrollbar.dart';
 import 'package:adawati_admin_panel/controllers/user_controller.dart';
 import 'package:adawati_admin_panel/widgets/custom_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +17,7 @@ class ClientsTable extends StatefulWidget {
 
 class _ClientsTableState extends State<ClientsTable> {
   late User user;
+  bool _isBlocked = false;
   // bool isBlocked = false;
   final UserController customersController =
       Get.put(UserController());
@@ -26,16 +28,25 @@ void initState()
     super.initState;
     customersController.fetchUser();
   }
+ String getStatusText(bool isBlocked) {
+  return isBlocked ? 'Bloqué' : 'Débloqué';
+}
+
+
 
 
   @override
   Widget build(BuildContext context) {
+    bool isBlocked = false;
+String statusText = getStatusText(isBlocked);
+print(statusText); // Affiche "Débloqué"
     var columns = const [
      
       DataColumn(label: Text('Name')),
       DataColumn(label: Text('Email')),
       DataColumn(label: Text('Phone')),
        DataColumn(label: Text('Address')),
+         DataColumn(label: Text('Etat')),
       DataColumn(label: Text('Actions')),
     ];
 
@@ -87,7 +98,7 @@ void initState()
                     
                     (index){
                final user = customersController.users[index];
-      final isBlocked = user.isBlocked;
+     // final isBlocked = user.isBlocked;
                   
                       return DataRow(cells: [
   DataCell(Padding(
@@ -114,19 +125,47 @@ void initState()
       text: customersController.users[index].address.toString(),
     ),
   )),
+   DataCell(Padding(
+    padding: EdgeInsets.symmetric(horizontal: 18.0),
+    child: CustomText(
+     text:getStatusText(isBlocked), 
+    ),
+  )),
      DataCell(Row(children: [
                             IconButton(
-                              onPressed: () {
-                     if (isBlocked != null && isBlocked) {
-                    customersController.unblockUser(user.id!);
-                  } else {
-                    customersController.blockUser(user.id!);
-                  }
-                },
-                icon: Icon(
-                  isBlocked != null && isBlocked ? Icons.lock : Icons.lock_open,
-                  color: isBlocked != null && isBlocked ? Colors.red : Colors.green,
-                ),
+                         onPressed: ()async {
+   if (!isBlocked) {
+       print('users blocked');
+     await  customersController.blockUser(user.id!);
+     ScaffoldMessenger.of(context).showSnackBar(
+  SnackBar(
+    content: Text(' le Compte utilisateur a éte bloqué avec succés'),
+  ),
+);
+    } 
+  },
+  icon:const Icon(
+   Icons.lock,
+   color: Colors.red,
+  ),
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.lock_open,color: Colors.green,),
+                            onPressed: (){
+                              if (isBlocked) {
+                      customersController.blockUser(user.id!);
+                    } else {
+                    print('users unblocked');
+                               customersController.unblockUser(user.id!);
+                               ScaffoldMessenger.of(context).showSnackBar(
+  SnackBar(
+    content: Text('Le compte Utilisateur a été débloqué avec succés'),
+  ),
+);
+                               
+                              
+                    }
+                            },
                             ),
                           ],
                           ),),

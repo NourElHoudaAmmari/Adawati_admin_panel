@@ -110,6 +110,7 @@ class _NiveauState extends State<Niveau> {
 ),
   ],
 ),
+SizedBox(height: 8,),
                  StreamBuilder<QuerySnapshot>(
                   stream: _niveau.snapshots(),
                   builder: (context, AsyncSnapshot snapshots) {
@@ -158,7 +159,7 @@ class _NiveauState extends State<Niveau> {
                         ));
                       }
                       return DataTable(
-                         columnSpacing: 400.0,
+                         columnSpacing: 950.0,
                         // ignore: prefer_const_literals_to_create_immutables
                         columns: [
                            DataColumn(

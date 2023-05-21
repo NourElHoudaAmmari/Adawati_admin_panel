@@ -103,7 +103,7 @@ class _EtatState extends State<Etat> {
 ),
   ],
 ),
-                
+   SizedBox(height: 8,),             
                  StreamBuilder<QuerySnapshot>(
                   stream: _etat.snapshots(),
                   builder: (context, AsyncSnapshot snapshots) {
@@ -150,7 +150,7 @@ class _EtatState extends State<Etat> {
                         ));
                       }
                       return DataTable(
-                        columnSpacing: 400.0,
+                        columnSpacing: 990.0,
                         // ignore: prefer_const_literals_to_create_immutables
                         columns: [
                            DataColumn(

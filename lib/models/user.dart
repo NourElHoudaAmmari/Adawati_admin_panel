@@ -13,7 +13,7 @@ class User{
   String? email;
 String? phone;
 String? address;
-bool? isBlocked;
+final bool isBlocked ;
 
  User({
     this.id,
@@ -21,10 +21,10 @@ bool? isBlocked;
     this.email,
     this.phone,
     this.address,
-    this.isBlocked=false,
+   this.isBlocked=false,
   });
 
-  User.fromJson(Map<String, dynamic> json) {
+  /*User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     email = json['email'];
@@ -33,7 +33,7 @@ bool? isBlocked;
        isBlocked = json['isBlocked'];
 
     
-  }
+  }*/
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -67,6 +67,7 @@ factory User.fromSnapshot(DocumentSnapshot snapshot) {
   final id = data?['id'] as String?;
   final phone = data?['phone'] as String?;
   final address = data?['address'] as String?;
+  final isBlocked = data?['isBlocked'] as bool?;
  
   return User(
     name: name,

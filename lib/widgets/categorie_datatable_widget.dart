@@ -1,4 +1,4 @@
-import 'package:adawati_admin_panel/controllers/categorie_controller.dart';
+/*import 'package:adawati_admin_panel/controllers/categorie_controller.dart';
 import 'package:adawati_admin_panel/services/firebase_services.dart';
 import 'package:adawati_admin_panel/widgets/custom_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -123,3 +123,4 @@ Row(
   @override
   int get selectedRowCount => 0;
 }
+*/

@@ -1,33 +1,19 @@
-import 'package:adawati_admin_panel/models/categorie.dart';
+import 'package:adawati_admin_panel/models/categorie_model.dart';
 import 'package:adawati_admin_panel/services/categorie_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 
-class CategorieController extends GetxController {
-  var categories = <Categorie >[].obs;
-  var isLoading = true.obs;
+final CollectionReference _categorie = FirebaseFirestore.instance.collection("categories");
+class CategorieController {
+  Future add_categorie(CategorieModel categorie) async {
+    await  _categorie.doc().set(categorie.add_data());
+  }
+  Future update_categorie(CategorieModel categorie) async
+{
+  await _categorie.doc(categorie.id).update(categorie.add_data()); 
+}   Future delete_categorie(CategorieModel categorie) async{
+    await _categorie.doc(categorie.id).delete();
 
-  void fetchCategorie() async {
-    try {
-      isLoading(true);
-      var categories = await CategoriesServices().getAll();
-      if (categories.isNotEmpty) {
-        this.categories.assignAll(categories);
-      }
-    } catch (e) {
-      // ignore: avoid_print
-      print(e);
-    } finally {
-      isLoading(false);
-    }
-  }
-    void addCategory(String id, String name) async {
-    try {
-      await CategoriesServices().addCategory(id, name);
-      fetchCategorie();
-    } catch (e) {
-      print(e);
-    }
-  }
-  
+   }
 }
